@@ -1,0 +1,200 @@
+﻿#include <stdio.h>
+
+int main()
+{
+    char *s[] = {"one", "two", "three"}, *p;		//字符指针数组
+    p = s[1];						// p = "two" = 't'的地址
+    printf("%c, %s\n",*(p+1), s[0]);			// p + 1即'w'的地址
+    return 0;
+}
+//答案：w,"one"
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};
+    int (*p)[4] = a;						//定义一个数组指针，a即a[0]的地址，等于a[0][0]的地址
+    printf("%d\n", *(*(p+1)+3));				//*(p + 1)为{5,6,7,8}，即'5'的地址，+3后为'8'的地址
+    return 0;
+}
+//答案：8
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};
+    int (*p)[4] = a;   						//定义一个数组指针，为a[0] = {1,2,3,4}的地址
+    printf("p: %p\n",p);
+    printf("p+1: %p\n",p+1);
+    printf("*(p+1): %p\n",*(p+1));
+    printf("*(p+1)+3: %p\n",*(p+1)+3);
+    printf("%d\n",*(*(p+1)+3));
+    return 0;
+}
+//答案：1.a[0]的地址，也会等于a[0][0]的地址
+	2.a[1]的地址，也会等于a[1][0]的地址
+	3.数组{5,6,7,8}，即5的地址
+	4.5的地址+3，即8的地址
+	5.对8的地址解引用，即8
+
+
+char str1[] = {'a', 'b', 'c', 'd', 'e'};
+char str2[] = "abcde";
+char *ptr = "abcde";
+char book[][80]={"计算机应用基础","C语言","C++程序设计","数据结构"};
+
+sizeof(str1)=?   							//若是32位系统，sizeof(str1)=5byte
+sizeof(str2)=? 								//若是32位系统，sizeof(str2)=6
+sizeof(ptr)=?								//若是32位系统，sizeof(ptr)=4，固定
+sizeof(book)=?								//4 * 80 = 320，sizeof(book)=320
+sizeof(book[0])=?							//若是32位系统，sizeof(book[0])=80
+
+
+
+
+char  arryA[] = {'a','b','c','\0','d','e'};
+char  arryB[] = {'a','b','c','d','e'};
+char  arryC[6] = {'a','b','c','d','e'};
+char *str = "abcde";
+
+strlen(arryA) = ?							//strlen函数遇到'\0'会停止，若是32位系统，
+									  strlen(arryA) = 3
+strlen(arryB) = ?							//若是32位系统，strlen(arryB) = 5
+strlen(arryC) = ?							//若是32位系统，strlen(arryC) = 5
+strlen(str) = ?								//若是32位系统，strlen(str) = 5
+
+
+
+#include <stdio.h>
+#include <windows.h>
+#pragma warning (disable:4996)
+ 
+int main()
+{
+	int a[5] = { 1, 2, 3, 4, 5 };
+	int *ptr = (int *)(&a + 1);		
+	//数组名在和&或sizeof()一起使用时代表整个数组，
+	//加1之后指向数组最后一个元素后面的位置。
+	printf("%d,%d,%d\n", *(a + 1), *(ptr - 1), ptr[-1]);
+	//输出的时候指针-1解引用，就代表5
+	system("pause");
+	return 0;
+} 
+//答案：2,5,5
+
+int main()
+{
+     int a[4]={1,2,3,4};
+     int *ptr1=(int *)(&a+1);
+     int *ptr2=(int *)((int)a+1);
+                                
+ 
+     printf("%x,%x\n",ptr1[-1],*ptr2);
+     return 0;
+} 
+//答案：4,2000000
+
+int main()
+{
+	int a[3][2] = { (0, 1), (2, 3), (4, 5) };
+	int *p = a[0];
+	printf("%d\n", p[0]);
+        return 0;
+}
+//答案：1
+
+int main()
+{
+	int aa[2][5] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	int *ptr1 = (int *)(&aa + 1);
+	int *ptr2 = (int *)(*(aa + 1));//这是本题的精华所在，理解(int *)(*（aa+1）)
+	printf("%d  %d\n", *(ptr1 - 1), *(ptr2 - 1));
+ 
+	return 0;
+}
+//答案：10,5
+
+#include <stdio.h>
+int main()
+{
+	char *c[] = { "Enter", "New", "Point", "First" };//字符指针数组
+	char **cp[] = { c + 3, c + 2, c + 1, c };
+	char ***cpp = cp;
+	printf("%s\n", **++cpp);
+	printf("%s\n", *--*++cpp + 3);
+	printf("%s\n", *cpp[-2] + 3);
+	printf("%s\n", cpp[-1][-1] + 1);
+        return 0;
+}
+//答案：
+
+#include <stdio.h>
+
+int main()
+{
+    int a[5] = {1,2,3,4,5};
+    int *ptr = (int*)(&a+1);
+    printf("%d,%d", *(a+1), *(ptr-1));
+
+    return 0;
+}
+//答案：2,5
+
+
+
+#include <stdio.h>
+
+int main(int argc, char * argv[])
+{
+    int a[3][2] = {(0,1),(2,3),(4,5)};
+    int *p;
+    p = a[0];
+    printf("%d\n", p[0]);					//p[0] = *p  
+
+    return 0;
+}
+//答案：1
+
+int main()
+{
+    int a[5][5];
+    int(*p)[4];
+    p = a;
+    printf("a_ptr=%#p,p_ptr=%#p\n", &a[4][2],&p[4][2]);
+    printf("%p,%d\n", &p[4][2]-&a[4][2], &p[4][2]-&a[4][2]);
+}
+//答案：
+
+
+
+int main()
+{
+    char *a[] = {"work","at","alibaba"};
+    char**pa = a;					//a = "work"的地址
+    pa++;					
+    printf("%s\n", *pa);
+
+    return 0;
+}
+//答案：at
+
+#include <stdio.h>
+
+int main()
+
+{
+    char *c[] = {"ENTER","NEW","POINT","FIRST"};
+    char**cp[] = {c+3,c+2,c+1,c};
+    char***cpp = cp;
+
+    printf("%s\n", **++cp);
+    printf("%s\n", *--*++cp+3);
+    printf("%s\n", *cpp[-2]+3);
+    printf("%s\n", cpp[-1][-1]+1);
+}
+答案：
+
