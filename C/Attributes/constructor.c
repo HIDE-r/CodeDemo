@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// constructor
+// constructor, 作用为自动在main函数之前执行
 // constructor (priority)	设置优先级, 范围 101 ~ 65535, 优先级的值越低越先执行
 
 static void __attribute__((constructor)) constructor(void) {
