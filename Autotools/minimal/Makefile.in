@@ -1,0 +1,9 @@
+# Makefile.in (hand-written, just for substitution)
+CC = @CC@
+CFLAGS = -Wall -O2
+
+all:
+	$(CC) $(CFLAGS) -o hello hello.c
+
+clean:
+	rm -f hello

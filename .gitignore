@@ -1,1 +1,8 @@
 a.out
+Autotools/*/config.h.in
+Autotools/*/auto*.cache
+Autotools/*/config.h
+Autotools/*/config.log
+Autotools/*/config.status
+Autotools/*/configure
+Autotools/*/Makefile

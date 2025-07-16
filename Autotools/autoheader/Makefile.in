@@ -1,0 +1,17 @@
+CC = @CC@
+CFLAGS = @CFLAGS@
+
+DEFS = @DEFS@
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+
+all: hello
+
+hello: hello.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+hello.o: hello.c config.h
+	$(CC) -c hello.c $(CPPFLAGS) $(DEFS) $(CFLAGS)
+
+clean:
+	rm -f hello hello.o
